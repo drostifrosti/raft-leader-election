@@ -13,12 +13,15 @@ file(GLOB TEST_SRC_FILES CONFIGURE_DEPENDS "test/*.cpp")
 add_executable(tests ${TEST_SRC_FILES})
 target_include_directories(tests PRIVATE include)
 target_include_directories(tests PRIVATE third_party/googletest/googletest/include)
+target_compile_definitions(tests PRIVATE BOOST_ALL_NO_LIB)
 
 add_executable(distributed_lock examples/distributed_lock.cpp)
 target_include_directories(distributed_lock PRIVATE include)
+target_compile_definitions(distributed_lock PRIVATE BOOST_ALL_NO_LIB)
 
 add_executable(leader_election examples/leader_election.cpp)
 target_include_directories(leader_election PRIVATE include)
+target_compile_definitions(leader_election PRIVATE BOOST_ALL_NO_LIB)
 
 find_package(Boost 1.75.0 COMPONENTS date_time regex REQUIRED)
 if(Boost_FOUND)
