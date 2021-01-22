@@ -16,11 +16,11 @@ using namespace raft::concurrent;
 using namespace raft::protocol;
 
 string random_word(const size_t length) {
-    char w[length];
+    std::unique_ptr<char[]> w(new char[length]);
     for (auto i = 0; i < length; i++) {
         w[i] = static_cast<char>('a' + rand() % 26);
     }
-    return string(w);
+    return string(w.get());
 }
 
 set<string> gen_random(const size_t size, const size_t length) {
